@@ -89,6 +89,13 @@ class Request(models.Model):
     supply_details = models.CharField(max_length=100, blank=True)
     dateadded = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['district']),
+            models.Index(fields=['requestee']),
+            models.Index(fields=['requestee_phone']),
+        ]
+
     def summarise(self):
         out = ""
         if(self.needwater):
